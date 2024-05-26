@@ -38,8 +38,8 @@ cp /usr/bin/qemu-arm-static /mnt/rootfs/usr/bin/
 cp configure-image.sh /mnt/rootfs/tmp
 
 chroot /mnt/rootfs /bin/bash -x <<'EOF'
-chmod 755 /tmp/configure-images.sh
-/tmp/configure-images.sh
+chmod 755 /tmp/configure-image.sh
+/tmp/configure-image.sh
 exit
 EOF
 
