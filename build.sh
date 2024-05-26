@@ -40,6 +40,7 @@ cp configure-image.sh /mnt/rootfs/tmp
 chroot /mnt/rootfs /bin/bash -x <<'EOF'
 chmod /tmp/configure-images.sh 755
 /tmp/configure-images.sh
+exit
 EOF
 
 ##1. Copy boot partition files:
