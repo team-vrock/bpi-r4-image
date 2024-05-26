@@ -33,3 +33,18 @@ apt-get update
 apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 
 apt-get install openvswitch-switch -y
+
+passwd admin 
+useradd -m -G users,sudo,ssh -s /bin/bash admin
+passwd admin
+
+locale-gen en_US
+locale-gen en_US.UTF-8
+update-locale "LANG=en_US.UTF-8"
+locale-gen --purge "en_US.UTF-8"
+dpkg-reconfigure --frontend noninteractive locales
+
+sudo ln -fs /usr/share/zoneinfo/Europe/Zurich /etc/localtime
+dpkg-reconfigure tzdata --frontend noninteractive locales
+
+exit
