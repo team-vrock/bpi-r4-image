@@ -37,10 +37,10 @@ debootstrap --arch=armhf --foreign bookworm /mnt/rootfs http://ftp.ch.debian.org
 cp /usr/bin/qemu-arm-static /mnt/rootfs/usr/bin/
 cp configure-image.sh /mnt/rootfs/tmp
 
-chroot /mnt/rootfs
+chroot /mnt/rootfs /bin/bash -x <<'EOF'
 chmod /tmp/configure-images.sh 755
 /tmp/configure-images.sh
-
+EOF
 
 ##1. Copy boot partition files:
 tar -x -f BPI-R4-bsp-6.1/SD/BPI-BOOT-bpi-r4-linux-6.1.tgz --keep-directory-symlink -C /mnt/rootfs/boot
