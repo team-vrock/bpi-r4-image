@@ -38,5 +38,3 @@ cp /usr/bin/qemu-arm-static /mnt/rootfs/usr/bin/
 cp configure-image.sh /mnt/rootfs/tmp
 
 chroot /mnt/rootfs
-
-
