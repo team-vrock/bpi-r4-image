@@ -38,3 +38,27 @@ cp /usr/bin/qemu-arm-static /mnt/rootfs/usr/bin/
 cp configure-image.sh /mnt/rootfs/tmp
 
 chroot /mnt/rootfs
+chmod /tmp/configure-images.sh 755
+/tmp/configure-images.sh
+
+
+##1. Copy boot partition files:
+tar -x -f BPI-R4-bsp-6.1/SD/BPI-BOOT-bpi-r4-linux-6.1.tgz --keep-directory-symlink -C /mnt/rootfs/boot
+
+##2. Copy kernel files to root file system:
+tar -x -f BPI-R4-bsp-6.1/SD/6.1.73.tgz --keep-directory-symlink -C /mnt/rootfs
+tar -x -f BPI-R4-bsp-6.1/SD/6.1.73-net.tgz  --keep-directory-symlink -C /mnt/rootfs
+
+##3. Copy bootloader files to root file system:
+tar -x -f BPI-R4-bsp-6.1/SD/BOOTLOADER-bpi-r4-linux-6.1.tgz --keep-directory-symlink -C /mnt/rootfs
+
+##4. Blacklist power button module:
+echo "blacklist mtk_pmic_keys" > /mnt/rootfs/etc/modules-load.d/mtk_pmic_keys.conf
+
+##5. Unmount:
+umount /mnt/rootfs/boot
+umount /mnt/rootfs
+sync
+
+##8. Remove loop device:
+losetup -d /dev/loop8
